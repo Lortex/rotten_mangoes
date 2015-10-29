@@ -18,13 +18,15 @@ class Movie < ActiveRecord::Base
   validates :release_date,
     presence: true
 
-  #we have to go *pause* BACK TO THE FUTURE
-  #dooooo doooo doooo, back to the future theme
+  #can not have reviews of a movie not yet released
   validate :release_date_is_in_the_past
 
-  def review_average
-    reviews.sum(:rating_out_of_ten)/reviews.size
+  def self.search(search)
+    where("title LIKE ?", "%#{search}%")
   end
+  #def review_average
+    #reviews.sum(:rating_out_of_ten)/reviews.size
+  #end
 
   protected
 
