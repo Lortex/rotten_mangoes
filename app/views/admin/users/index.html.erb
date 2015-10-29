@@ -2,7 +2,9 @@
 <%= link_to "Back to all movies", movies_path %>
 <hr>
 <% @users.each do |user| %>
-    <h2><%= user.email %></h2>
+    <h2><%= link_to user.email, user_path(user) %></h2>
     <h3><%= user.full_name %></h3>
     <hr>
 <% end %></hr>
+<%= paginate @users %>
+<%= page_entries_info @users %>
