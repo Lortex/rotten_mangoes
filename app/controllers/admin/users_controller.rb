@@ -1,10 +1,10 @@
-class Admin::UsersController < ApplicationController
+class Admin::UsersController < AdminController
   def show
     @users = User.all
   end
 
   def index
-    @users = User.all
+    @users = User.page(params[:page]).per(2)
   end
 
   protected
