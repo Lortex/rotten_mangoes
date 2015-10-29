@@ -21,9 +21,6 @@ class Movie < ActiveRecord::Base
   #can not have reviews of a movie not yet released
   validate :release_date_is_in_the_past
 
-  def self.search(search)
-    where("title LIKE ?", "%#{search}%")
-  end
   #def review_average
     #reviews.sum(:rating_out_of_ten)/reviews.size
   #end

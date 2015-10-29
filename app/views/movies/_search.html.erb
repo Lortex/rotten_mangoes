@@ -1,6 +1,7 @@
 <%= form_tag(movies_path, method: 'get', id: 'search-form') do %>
-    <%= text_field_tag :search, params[:search], placeholder: "Search for movies..." %>
-    <%= submit_tag "Search" %>
+    <p>Title: <%= text_field_tag :search_title, params[:search_title], placeholder: "Filter by title..." %></p>
+    <p>Director: <%= text_field_tag :search_director, params[:search_director], placeholder: "Filter by director..." %></p>
+    <p><%= submit_tag "Search" %></p>
 <% end %>
 </br>
 <% if @movies.present? %>

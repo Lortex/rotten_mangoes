@@ -1,11 +1,9 @@
 class MoviesController < ApplicationController
   def index
     @movies = Movie.all
-    if params[:search]
-      @movies = Movie.search(params[:search]).order('title ASC')
-    else
-      @movies = Movie.all.order('title ASC')
-    end
+    @movies = @movies.where("title LIKE ?", "%#{params[:search_title]}%") if params[:search_title]
+    @movies = @movies.where("director LIKE ?", "%#{params[:search_director]}%") if params[:search_director]
+    @movies = @movies.order('title ASC')
   end
 
   #i want to DRY this up
@@ -33,7 +31,6 @@ class MoviesController < ApplicationController
 
   def update
     @movie = Movie.find(params[:id])
-
     if @movie.update_attributes(movie_params)
       redirect_to movie_path(@movie)
     else
@@ -51,7 +48,7 @@ class MoviesController < ApplicationController
 
   def movie_params
     params.require(:movie).permit(
-       :title, :release_date, :director, :runtime_in_minutes, :poster_image_url, :description, :image
+      :title, :release_date, :director, :runtime_in_minutes, :poster_image_url, :description, :image
     )
   end
 
