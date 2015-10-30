@@ -1,3 +1,5 @@
+<!-- strech goals full-text search... rubygem, and elastic search.
+    weight results per density ala google -->
 <%= form_tag(movies_path, method: 'get', id: 'search-form') do %>
     <p>Title: <%= text_field_tag :search_title, params[:search_title], placeholder: "Filter by title..." %></p>
     <p>Director: <%= text_field_tag :search_director, params[:search_director], placeholder: "Filter by director..." %></p>

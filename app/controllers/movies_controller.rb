@@ -3,6 +3,9 @@ class MoviesController < ApplicationController
     @movies = Movie.all
     @movies = @movies.where("title LIKE ?", "%#{params[:search_title]}%") if params[:search_title]
     @movies = @movies.where("director LIKE ?", "%#{params[:search_director]}%") if params[:search_director]
+    @movies = @movies.where(runtime_in_minutes: 0..90) if (params[:search_runtime] && params[:search_runtime] == 'short')
+    @movies = @movies.where(runtime_in_minutes: 90..120) if (params[:search_runtime] && params[:search_runtime] == 'medium')
+    @movies = @movies.where("runtime_in_minutes > 120") if (params[:search_runtime] && params[:search_runtime] == 'long')
     @movies = @movies.order('title ASC')
   end
 
@@ -21,7 +24,6 @@ class MoviesController < ApplicationController
 
   def create
     @movie = Movie.new(movie_params)
-
     if @movie.save
       redirect_to movies_path, notice: "#{@movie.title} was submitted successfully!"
     else
