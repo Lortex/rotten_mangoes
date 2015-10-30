@@ -35,7 +35,7 @@ class Admin::UsersController < AdminController
 
   def destroy
     @user = User.find(params[:id])
-    if @movie.destroy
+    if @user.destroy
       redirect_to admin_users_path, notice: "User was deleted successfully"
     else
       render :edit

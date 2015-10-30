@@ -1,3 +1,6 @@
 <%= link_to "View all users", admin_users_path %>
 <h1>Sign up: Admin edition</h1>
 <%= render 'form' %>
+<hr>
+<%= link_to "Delete user", admin_user_path(@user), method: :delete %>
+<hr>
