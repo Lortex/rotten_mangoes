@@ -1,5 +1,8 @@
 <h1>Rotten Mangoes</h1>
-<%= link_to "Back to all movies", movies_path %>
+<%= link_to "Back to all movies", movies_path %></hr>
+<!-- This path sounds weird. You can create a new user, doesnt
+have to be an admin though. Can be a normal user -->
+<%= link_to "Create new user", new_admin_user_path %></hr>
 <hr>
 <% @users.each do |user| %>
     <h2><%= link_to user.email, admin_user_path(user) %></h2>

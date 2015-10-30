@@ -4,7 +4,7 @@ class Admin::UsersController < AdminController
   end
 
   def index
-    @users = User.page(params[:page]).per(2)
+    @users = User.page(params[:page]).per(5)
   end
 
   def new
@@ -27,7 +27,16 @@ class Admin::UsersController < AdminController
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
-      redirect_to admin_users_path(@user)
+      redirect_to admin_user_path(@user), notice: "#{@user.full_name} was updated successfully!"
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @user = User.find(params[:id])
+    if @movie.destroy
+      redirect_to admin_users_path, notice: "User was deleted successfully"
     else
       render :edit
     end
@@ -37,7 +46,8 @@ class Admin::UsersController < AdminController
 
   def user_params
     params.require(:user).permit(
-      :email, :firstname, :lastname, :password, :password_confirmation
+      :email, :firstname, :lastname, :password, :password_confirmation,
+      :admin
     )
   end
 end
