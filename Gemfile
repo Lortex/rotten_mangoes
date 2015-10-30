@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+#want to use API to help populate seed. not my idea, classmates idea
+gem 'httparty'
+
 #need to test some things
 gem 'pry'
 

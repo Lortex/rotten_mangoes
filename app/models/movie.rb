@@ -25,6 +25,7 @@ class Movie < ActiveRecord::Base
   def self.search(search)
     where("title LIKE ?", "%#{search}%")
   end
+
   #def review_average
     #reviews.sum(:rating_out_of_ten)/reviews.size
   #end
